@@ -177,3 +177,64 @@ asyncio.run(smoke())
 
 ---
 
+## 🧪 How to Test (Example Queries)
+
+These steps validate retrieval relevance, context handling, and reset behavior.
+
+1️⃣ **Upload a documentation file**, then ask:
+```
+tell me about fees
+```
+✅ AI should return an answer that references information from the uploaded document  
+✅ Check that cited context is relevant  
+
+---
+
+2️⃣ **Delete the previously added file**, then ask:
+```
+tell me about security
+```
+✅ Since no documentation is stored, the answer should **not** include retrieved context  
+✅ Response must rely only on general model knowledge  
+
+---
+
+3️⃣ **Upload the documentation file again**, ask:
+```
+tell me about fees
+```
+Then follow up with:
+```
+Can you repeat?
+```
+✅ This verifies that the conversation memory and context are preserved within the chat session  
+
+---
+
+4️⃣ **Reload the page**, ask again:
+```
+Can you repeat?
+```
+✅ The model should **not** remember the previous conversation  
+✅ There should be **no saved context** after refreshing the UI  
+
+---
+
+Use these tests to confirm:
+✅ Retrieval works  
+✅ RAG context appears only when relevant  
+✅ Conversation memory persists **only** inside a single session  
+✅ No hidden permanent memory between sessions
+
+## 🛠️ Technologies Used & Why
+
+| Technology | Reason                                                                                                         |
+|-----------|----------------------------------------------------------------------------------------------------------------|
+| **Qdrant** | Simple and fully sufficient vector DB for this scale of project. Great developer experience.                   |
+| **FastAPI** | Required by the assignment, and also a fast, modern Python framework for APIs.                                 |
+| **LangChain** | Has pros and cons, but enables rapid RAG development and maintainability. I have extensive experience with it. |
+| **OpenAI** | Already had paid tokens available :))) — quick to integrate for embeddings + LLM responses.                    |
+| **Vite** | Extremely fast dev server startup, lightweight tooling — perfect for a small UI.                               |
+| **React** | Solid ecosystem and I have strong development experience with it.                                              |
+
+---
