@@ -1,3 +1,6 @@
+# 🔗 **API DOCS** → https://test-task-chat.fly.dev/docs
+
+
 # RAG Chat Server — Setup Guide
 
 This repo contains a FastAPI backend with Qdrant as the vector database.
